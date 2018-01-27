@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="selection-wrapper">    
+      <h3>Select a provider</h3><br>
+        <ul>
+          <li><a href="javascript:void(0)" (click)="getProvider('movies')">Movies</a></li>
+          <li><a href="javascript:void(0)" (click)="getProvider('music')">Music (Elthon John albums)</a></li>
+          <li><a href="javascript:void(0)" (click)="getProvider('countries')">Countries (down?)</a></li>
+          <li><a href="javascript:void(0)" (click)="getProvider('books')">books</a></li>
+        </ul>
+
+      <div *ngIf="isShowLoader" class="loader text-center"></div>
+  </div>
+
+    <table class="table" *ngIf="showTbl">
+      <thead>
+        <tr>
+          <th>{{fld1Caption}}</th>
+          <th>{{fld2Caption}}</th>
+          <th>Comment</th>
+          <th>Add to fav.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of apiData | limitTo:50; let i = index">
+          <td>{{item.fld1}}</td>
+          <td>{{item.fld2}}</td>
+          <td><input type="text" id="comment_{{i}}"></td>
+          <td><input type="checkbox" id="chk_{{i}}" (click)="addFav(i,item)"></td>
+        </tr>
+    
+      </tbody>
+    </table>
+
+
+  </div>
+</div>
+
+<simple-notifications></simple-notifications>
